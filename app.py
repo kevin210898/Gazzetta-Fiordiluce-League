@@ -9,7 +9,7 @@ import streamlit as st
 DB_FILE = "bacheca_dati.json"
 ID_LEGA = "4181805"
 APP_KEY_FC = "ICiELOObd5DF5uJEATi77CRvHiiRuMU0"
-TOKEN_AUTH = "eyJhbGciOiJSUzI1NiIsImtpZCI6Im9OUVhqWXhvQ3ZscFVnVDdCQkdYTHhwUGxxT0k1c0lqWVdyQXhhWFpTczAiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiIzZTdkN2M2NDAxOWUwNDhiNjFlNTdmNjczZjAxYmU3MCIsImp0aSI6IjBkMTRiYzlhNWNhZTMzOTQ0NjFmOGRlYjlmMTljOWQyIiwiaXNzIjoiaHR0cHM6Ly9sZWdoZS5mYW50YWNhbGNpby5pdCIsImlhdCI6MTc4ODc5MjQyMCwiZXhwIjoxODIwMzI4NDIwLCJsX2lkIjoiNDE4MTgwNSIsI3RfaWQiOiIxOTE2NjAzNCIsInVzZXJfaWQiOiIzMzkwOTE1Iiwic3RfbGVhZ3VlcyI6IjE3ODg3OTI0MjA4NjciLCJzdF_hdXRoIjoiMTcyNjE3Mjc5NDM3MSIsInJvbGUiOiJ1c2VyX2xlYWd1ZSIsInRva2VuX3VzZSI6ImlkIiwibmJmIjoxNzg4NzkyNDIwLCJhdWQiOiJmYW50YWNhbGNpbyJ9.JUutJNUEvV0M6knMIDAPAwrwBC7_SRwjQNfh9jcEhVzE0N0bK17MdCJjiVY4H-siblvJ4NF7Dabf8v2lMdgZXdYq-UOEbxq-BxVxB5N0Mk6PiceQQm25W2Fsg1tAXZ-NSXe5ARIVmgH_-mcnkU8sZVtfcmkHn3Pgf2zunLYJxrMvLR6wn1QJq_v4IG8J231hKf3EJV55JQ40G9a9I7BMzAVqEVcBq5pKFO3Vq5lkZUyav0HJAIBbUakVrDATMx6zXfZTvygFIRfE7QTpg0vH4nHCcTW8c_Jyh8dqqBPmuWR6m-mZuk3Ga-ZewaIvNpQgTaJd7SEABfJcv9SmnLNxsg"
+TOKEN_AUTH = "eyJhbGciOiJSUzI1NiIsImtpZCI6Im9OUVhqWXhvQ3ZscFVnVDdCQkdYTHhwUGxxT0k1c0lqWVdyQXhhWFpTczAiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiIzZTdkN2M2NDAxOWUwNDhiNjFlNTdmNjczZjAxYmU3MCIsImp0aSI6IjBkMTRiYzlhNWNhZTMzOTQ0NjFmOGRlYjlmMTljOWQyIiwiaXNzIjoiaHR0cHM6Ly9sZWdoZS5mYW50YWNhbGNpby5pdCIsImlhdCI6MTc4ODc5MjQyMCwiZXhwIjoxODIwMzI4NDIwLCJsX2lkIjoiNDE4MTgwNSIsI3RfaWQiOiIxOTE2NjAzNCIsInVzZXJfaWQiOiIzMzkwOTE1Iiwic3RfbGVhZ3VlcyI6IjE3ODg3OTI0MjA4NjciLCJzdF9hdXRoIjoiMTcyNjE3Mjc5NDM3MSIsInJvbGUiOiJ1c2VyX2xlYWd1ZSIsInRva2VuX3VzZSI6ImlkIiwibmJmIjoxNzg4NzkyNDIwLCJhdWQiOiJmYW50YWNhbGNpbyJ9.JUutJNUEvV0M6knMIDAPAwrwBC7_SRwjQNfh9jcEhVzE0N0bK17MdCJjiVY4H-siblvJ4NF7Dabf8v2lMdgZXdYq-UOEbxq-BxVxB5N0Mk6PiceQQm25W2Fsg1tAXZ-NSXe5ARIVmgH_-mcnkU8sZVtfcmkHn3Pgf2zunLYJxrMvLR6wn1QJq_v4IG8J231hKf3EJV55JQ40G9a9I7BMzAVqEVcBq5pKFO3Vq5lkZUyav0HJAIBbUakVrDATMx6zXfZTvygFIRfE7QTpg0vH4nHCcTW8c_Jyh8dqqBPmuWR6m-mZuk3Ga-ZewaIvNpQgTaJd7SEABfJcv9SmnLNxsg"
 CLAUDE_API_KEY = "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"
 
 squadre_dati_base = {
@@ -25,6 +25,17 @@ squadre_dati_base = {
     "19667036": {"nome": "giuardiaeladri", "pres": "Alessandro Magli"}
 }
 
+# Dati di esempio dettagliati per le rose (strutturati puliti)
+rose_dettaglio = {
+    "Atletico Poco": {
+        "bilancio": "466 crediti", "record": "70 crediti",
+        "portieri": ["Perri (1cr)", "Stankovic F. (9cr)", "Skorupski (6cr)"],
+        "difensori": ["Valeri (1cr)", "Dimarco (70cr)", "Bellanova (1cr)", "Valdepenas (5cr)", "Belghali (1cr)", "Marcandalli (6cr)", "Valle (10cr)", "Kaiki (1cr)"],
+        "centrocampisti": ["Taylor K. (10cr)", "Bernardeschii (2cr)", "McTominay (26cr)", "Ederson D.S. (22cr)", "Orsolini (46cr)", "Zalewski (1cr)", "Calhanoglu (40cr)", "Perrone (4cr)"],
+        "attaccanti": ["Dybala (41cr)", "Laurientè (21cr)", "Simeone (56cr)", "Bowie (4cr)", "Pinamonti (66cr)", "Piccoli (16cr)"]
+    }
+}
+
 SYSTEM_PROMPT = (
     "Sei il Direttore supremo della Fantagazzetta FiordiLuce: un editorialista sportivo caustico, brillante, cinico e spietato. "
     "Commenta la classifica della lega analizzando gli spostamenti, i punti e i risultati appena calcolati della giornata. "
@@ -34,11 +45,9 @@ SYSTEM_PROMPT = (
 
 st.set_page_config(page_title="FiordiLuce League", page_icon="⚽", layout="centered")
 
-# Stile CSS personalizzato (tema scuro, bordi dorati, stile FantaGazzetta)
 st.markdown("""
     <style>
     .stApp { background-color: #030712; color: #f9fafb; }
-    .sidebar .stSidebar { background-color: #0b0f19; }
     .gold-box {
         background-color: #0b0f19;
         border: 2px solid #f59e0b;
@@ -72,7 +81,14 @@ def carica_archivio():
                 return json.load(f)
         except Exception:
             pass
-    return {"pagellone": "", "rose": "", "pronostici": "", "processo": "", "classifica_commento": "", "ultima_classifica_str": ""}
+    return {
+        "pagellone": "Genera il pagellone tramite la redazione.",
+        "rose": "Seleziona una squadra per visualizzare l'analisi dettagliata.",
+        "pronostici": "Nessun pronostico disponibile.",
+        "processo": "Il tribunale del lunedì non è ancora convocato.",
+        "classifica_commento": "In attesa di dati ufficiali dalla Lega.",
+        "ultima_classifica_str": ""
+    }
 
 def salva_archivio(dati):
     try:
@@ -128,6 +144,8 @@ def chiama_claude(prompt_testo):
             dati = res.json()
             testo = "".join([b["text"] for b in dati.get("content", []) if b.get("type") == "text"])
             return testo.replace("*", "").replace("#", "")
+        elif res.status_code == 401:
+            return "Errore 401: Chiave API di Claude non valida o scaduta. Controlla la tua chiave nelle impostazioni."
         return f"Errore generazione Claude ({res.status_code})"
     except Exception as e:
         return f"Errore di connessione: {e}"
@@ -135,7 +153,7 @@ def chiama_claude(prompt_testo):
 db = carica_archivio()
 
 # =====================================================================
-# BARRA LATERALE (SIDEBAR)
+# SIDEBAR
 # =====================================================================
 with st.sidebar:
     st.markdown("### ⚽ FANTA GAZZETTA")
@@ -151,7 +169,7 @@ with st.sidebar:
     st.markdown("<p style='color: #9ca3af; font-size: 11px;'>Lega a 10 Squadre • ID 4181805<br>Stagione 2026/2027</p>", unsafe_allow_html=True)
 
 # =====================================================================
-# CONTENUTO DELLE SEZIONI
+# SEZIONI APP
 # =====================================================================
 if scelta_menu == "Home Dashboard":
     st.markdown("""
@@ -199,11 +217,11 @@ elif scelta_menu == "Classifica Ufficiale":
             </div>
         """, unsafe_allow_html=True)
     
-    # Sincronizzazione automatica commento IA sulla classifica
+    # Sincronizzazione automatica e persistente del commento IA sulla classifica
     nuova_str = json.dumps(dati_classifica, sort_keys=True)
     vecchia_str = db.get("ultima_classifica_str", "")
     
-    if nuova_str != vecchia_str or not db.get("classifica_commento"):
+    if nuova_str != vecchia_str or not db.get("classifica_commento") or "Errore" in db.get("classifica_commento", ""):
         with st.spinner("La redazione sta analizzando i nuovi spostamenti in classifica..."):
             nomi_str = ", ".join([f"#{i['pos']} {i['nome']} ({i['punti']} pt)" for i in dati_classifica])
             prompt = (
@@ -221,15 +239,44 @@ elif scelta_menu == "Classifica Ufficiale":
         <div class="gold-box" style="margin-top: 20px;">
             <h4 style="color: #f59e0b; margin-top: 0;">✍️ Commento del Direttore sui Verdetti</h4>
             <hr style="border-color: #f59e0b; margin: 8px 0;">
-            <p style="font-size: 14px; line-height: 1.5;">{db.get("classifica_commento", "")}</p>
+            <p style="font-size: 14px; line-height: 1.5; white-space: pre-wrap;">{db.get("classifica_commento", "")}</p>
         </div>
     """, unsafe_allow_html=True)
 
+elif scelta_menu == "Rose e Calciatori":
+    st.markdown("""
+        <div class="gold-box">
+            <h3 style="color: #f59e0b; margin: 0;">👥 Rose e Calciatori</h3>
+            <p style="color: #9ca3af; font-size: 12px; margin-top: 4px;">Seleziona la squadra da esaminare:</p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    squadra_selezionata = st.selectbox("Seleziona squadra", list(squadre_dati_base.values()), format_func=lambda x: f"{x['nome']} (Pres. {x['pres']})")
+    
+    st.markdown(f"""
+        <div class="team-card">
+            <h3 style="color: #f59e0b; margin-top: 0;">{squadra_selezionata['nome']} — Pres. {squadra_selezionata['pres']}</h3>
+            <p style="color: #9ca3af; font-size: 12px; margin-bottom: 4px;">• BILANCIO ASTA: 466 crediti | • ACQUISTO RECORD: 70 crediti</p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.markdown("### 🟡 PORTIERI")
+        st.markdown("- Perri (1cr)\n- Stankovic F. (9cr)\n- Skorupski (6cr)")
+    with col2:
+        st.markdown("### 🟢 DIFENSORI")
+        st.markdown("- Valeri (1cr)\n- Dimarco (70cr)\n- Bellanova (1cr)\n- Valdepenas (5cr)\n- Belghali (1cr)\n- Marcandalli (6cr)")
+    with col3:
+        st.markdown("### 🔵 CENTROCAMPISTI")
+        st.markdown("- Taylor K. (10cr)\n- Bernardeschi (2cr)\n- McTominay (26cr)\n- Ederson D.S. (22cr)\n- Orsolini (46cr)\n- Calhanoglu (40cr)")
+    with col4:
+        st.markdown("### 🔴 ATTACCANTI")
+        st.markdown("- Dybala (41cr)\n- Laurientè (21cr)\n- Simeone (56cr)\n- Pinamonti (66cr)\n- Piccoli (16cr)")
+
 else:
-    # Sezioni dinamiche (Pagellone, Rose, Pronostici, Processo)
     config_sezioni = {
         "Il Pagellone dell'Asta": ("📜 Il Pagellone dell'Asta", "pagellone", "Scrivi il pagellone spietato e ironico dell'asta per tutte le squadre della lega FiordiLuce."),
-        "Rose e Calciatori": ("👥 Rose e Calciatori", "rose", "Analizza le rose e i colpi di mercato dei vari presidenti nella lega FiordiLuce."),
         "Pronostici Pre-Partita": ("🔮 Pronostici Pre-Partita", "pronostici", "Spara i pronostici sfacciati e le previsioni catastrofiche per la prossima giornata."),
         "Il Processo del Lunedì": ("⚖️ Il Processo del Lunedì", "processo", "Conduci il processo del lunedì commentando voti, scandali e risultati della giornata appena conclusa.")
     }
@@ -239,20 +286,26 @@ else:
     st.markdown(f"""
         <div class="gold-box">
             <h3 style="color: #f59e0b; margin-top: 0;">{titolo_sezione}</h3>
-            <p style="color: #9ca3af; font-size: 12px;">Interroga la redazione per generare o aggiornare i contenuti editoriali.</p>
+            <p style="color: #9ca3af; font-size: 12px;">Contenuti editoriali della redazione:</p>
         </div>
     """, unsafe_allow_html=True)
     
-    if st.button("Genera con IA Redazione", type="primary"):
-        with st.spinner("Il Direttore sta scrivendo l'articolo..."):
+    # Se il testo è vuoto o di default, lo genera in automatico la prima volta
+    if not db.get(chiave_db) or "Genera" in db.get(chiave_db, "") or "attendere" in db.get(chiave_db, ""):
+        with st.spinner("Il Direttore sta scrivendo l'articolo in automatico..."):
+            testo = chiama_claude(prompt_base)
+            db[chiave_db] = testo
+            salva_archivio(db)
+            
+    if st.button("Rigenera con IA Redazione", type="primary"):
+        with st.spinner("Aggiornamento in corso..."):
             testo = chiama_claude(prompt_base)
             db[chiave_db] = testo
             salva_archivio(db)
             st.rerun()
             
-    testo_attuale = db.get(chiave_db, "Nessun contenuto generato. Clicca il pulsante sopra per interrogare la redazione.")
     st.markdown(f"""
         <div style="background-color: #0b0f19; border: 1px solid #1f2937; border-radius: 10px; padding: 16px;">
-            <p style="font-size: 14px; line-height: 1.5; white-space: pre-wrap;">{testo_attuale}</p>
+            <p style="font-size: 14px; line-height: 1.5; white-space: pre-wrap;">{db.get(chiave_db, "")}</p>
         </div>
     """, unsafe_allow_html=True)
