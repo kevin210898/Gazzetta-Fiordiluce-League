@@ -25,17 +25,6 @@ squadre_dati_base = {
     "19667036": {"nome": "giuardiaeladri", "pres": "Alessandro Magli"}
 }
 
-# Dati di esempio dettagliati per le rose (strutturati puliti)
-rose_dettaglio = {
-    "Atletico Poco": {
-        "bilancio": "466 crediti", "record": "70 crediti",
-        "portieri": ["Perri (1cr)", "Stankovic F. (9cr)", "Skorupski (6cr)"],
-        "difensori": ["Valeri (1cr)", "Dimarco (70cr)", "Bellanova (1cr)", "Valdepenas (5cr)", "Belghali (1cr)", "Marcandalli (6cr)", "Valle (10cr)", "Kaiki (1cr)"],
-        "centrocampisti": ["Taylor K. (10cr)", "Bernardeschii (2cr)", "McTominay (26cr)", "Ederson D.S. (22cr)", "Orsolini (46cr)", "Zalewski (1cr)", "Calhanoglu (40cr)", "Perrone (4cr)"],
-        "attaccanti": ["Dybala (41cr)", "Laurientè (21cr)", "Simeone (56cr)", "Bowie (4cr)", "Pinamonti (66cr)", "Piccoli (16cr)"]
-    }
-}
-
 SYSTEM_PROMPT = (
     "Sei il Direttore supremo della Fantagazzetta FiordiLuce: un editorialista sportivo caustico, brillante, cinico e spietato. "
     "Commenta la classifica della lega analizzando gli spostamenti, i punti e i risultati appena calcolati della giornata. "
@@ -82,12 +71,8 @@ def carica_archivio():
         except Exception:
             pass
     return {
-        "pagellone": "Genera il pagellone tramite la redazione.",
-        "rose": "Seleziona una squadra per visualizzare l'analisi dettagliata.",
-        "pronostici": "Nessun pronostico disponibile.",
-        "processo": "Il tribunale del lunedì non è ancora convocato.",
-        "classifica_commento": "In attesa di dati ufficiali dalla Lega.",
-        "ultima_classifica_str": ""
+        "pagellone": "", "rose": "", "pronostici": "", "processo": "", 
+        "classifica_commento": "", "ultima_classifica_str": ""
     }
 
 def salva_archivio(dati):
@@ -144,8 +129,6 @@ def chiama_claude(prompt_testo):
             dati = res.json()
             testo = "".join([b["text"] for b in dati.get("content", []) if b.get("type") == "text"])
             return testo.replace("*", "").replace("#", "")
-        elif res.status_code == 401:
-            return "Errore 401: Chiave API di Claude non valida o scaduta. Controlla la tua chiave nelle impostazioni."
         return f"Errore generazione Claude ({res.status_code})"
     except Exception as e:
         return f"Errore di connessione: {e}"
@@ -217,7 +200,6 @@ elif scelta_menu == "Classifica Ufficiale":
             </div>
         """, unsafe_allow_html=True)
     
-    # Sincronizzazione automatica e persistente del commento IA sulla classifica
     nuova_str = json.dumps(dati_classifica, sort_keys=True)
     vecchia_str = db.get("ultima_classifica_str", "")
     
@@ -251,7 +233,13 @@ elif scelta_menu == "Rose e Calciatori":
         </div>
     """, unsafe_allow_html=True)
     
-    squadra_selezionata = st.selectbox("Seleziona squadra", list(squadre_dati_base.values()), format_func=lambda x: f"{x['nome']} (Pres. {x['pres']})")
+    # CORRETTO: Uso delle chiavi testuali anziché dei dizionari per evitare il crash di Streamlit
+    id_scelto = st.selectbox(
+        "Squadra", 
+        list(squadre_dati_base.keys()), 
+        format_func=lambda k: f"{squadre_dati_base[k]['nome']} (Pres. {squadre_dati_base[k]['pres']})"
+    )
+    squadra_selezionata = squadre_dati_base[id_scelto]
     
     st.markdown(f"""
         <div class="team-card">
@@ -290,8 +278,7 @@ else:
         </div>
     """, unsafe_allow_html=True)
     
-    # Se il testo è vuoto o di default, lo genera in automatico la prima volta
-    if not db.get(chiave_db) or "Genera" in db.get(chiave_db, "") or "attendere" in db.get(chiave_db, ""):
+    if not db.get(chiave_db) or "Errore" in db.get(chiave_db, ""):
         with st.spinner("Il Direttore sta scrivendo l'articolo in automatico..."):
             testo = chiama_claude(prompt_base)
             db[chiave_db] = testo
